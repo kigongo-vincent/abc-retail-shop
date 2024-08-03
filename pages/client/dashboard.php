@@ -85,7 +85,7 @@
                 </p>
 
 
-                <button class="primary-btn">
+                <button class="primary-btn" onclick ="placeOrder()">
 
                     <p>place order</p>
                     <img src="../../assets/icons/triangle-right.svg" alt="" height="15px">

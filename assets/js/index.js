@@ -295,6 +295,24 @@ const toggleProfileVisibility = () => {
 //end show or hide profile
 
 
+const placeOrder =()=>{
+
+    const baseURL = "http://localhost/abc%20retaill%20shop/controllers/addOrder.php"
+
+    const params  ={
+
+        products: globals.selected_products,
+
+    }
+
+    const queryString = new URLSearchParams(params).toString();
+
+    const fullURL = `${baseURL}?${queryString}`;
+
+    window.location.href = fullURL
+
+}
+
 
 // show or hide products model 
 
@@ -355,9 +373,9 @@ const displaySelectedProducts = () => {
 
 window.addEventListener("DOMContentLoaded", () => {
 
+    displayCategories()
     getProducts()
 
-    displayCategories()
 
     SingleRenderer("selected_products_count", globals.selected_products.length)
 

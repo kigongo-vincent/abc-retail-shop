@@ -160,7 +160,7 @@
 
             <input required type="text" name="name" placeholder="Name of the product">
 
-            <select required  name="category" id="categories">
+            <select  name="category" id="categories">
 
             </select>
 

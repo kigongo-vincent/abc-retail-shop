@@ -16,27 +16,19 @@ function PATCH($table, $row, $data){
 
     try {
 
-        include("./components/connect.php");
+        include("../components/connect.php");
 
-        include("./utilities/GET_ONE.php");
-
-        $result = GET_ONE($table, "id", $row);
-
-        if($result["status"] != 200){
-
-            return ["status" => 404];
-
-        }
+        include("../utilities/GET_ONE.php");
 
         $sql = sprintf(
             
-            'UPDATE %s SET %s WHERE %s.id = %s',
+            'UPDATE %s SET %s WHERE %s = %s',
 
             $table,
 
             substr($execution, 0, -2),
 
-            $table,
+            $table . "." . substr($table, 0, -1) . "_id",
 
             $row
         
@@ -56,7 +48,7 @@ function PATCH($table, $row, $data){
 
     } catch (\Throwable $th) {
         
-        return ["status" => 400, "error"=> $th];
+        return ["status" => 418, "error"=> $th];
 
     }
 

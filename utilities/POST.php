@@ -25,9 +25,11 @@ function POST($table, $data){
 
         $sql = sprintf(
             
-            'INSERT INTO %s (id, %s) VALUES (NULL, %s);', 
+            'INSERT INTO %s (%s, %s) VALUES (NULL, %s);', 
             
             $table, 
+
+            substr($table, 0, -1) . "_id",
             
             substr($table_fields, 0,-2), 
             
@@ -49,7 +51,7 @@ function POST($table, $data){
 
     } catch (\Throwable $th) {
         
-        return ["status" => 400, "error"=> $th];
+        return ["status" => 418, "error"=> $th];
 
     }
 

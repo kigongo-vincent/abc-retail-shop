@@ -21,7 +21,7 @@ if(isset($_POST["submit"])){
 
         "name" => $_POST['name'],
         "price" => $_POST['price'],
-        "category"=> $_POST["category"],
+        "category"=> NULL,
         "image" => $image,
         "status" => "available"
     
