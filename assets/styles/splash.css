@@ -1,0 +1,109 @@
+@import url("./index.css");
+
+*{
+    transition: .3s;
+}
+
+/* screen  */
+body {
+
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+}
+
+/* main container  */
+body>div {
+
+    padding: 1.5rem;
+    border-radius: 4px;
+    background-color: var(--bright);
+
+}
+
+/* splash inage  */
+body>div>img {
+
+    width: 15vw;
+
+}
+
+/* welcome message  */
+body>div>p {
+
+    margin: 1rem 4rem;
+
+}
+
+/* icon and input container  */
+form div:nth-of-type(1) {
+
+    display: flex;
+    align-items: center;
+    background-color: var(--light);
+    padding: .8rem;
+
+}
+
+/* email input  */
+form>div>input[type=email], input[type=password] {
+
+    border: none;
+    outline: none;
+    background: transparent;
+    width: 100%;
+    padding: 0 .5rem;
+
+}
+
+/* submit container  */
+form div:nth-of-type(2) {
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 2rem;
+
+}
+
+/* guest mode button  */
+form div:nth-of-type(2) u {
+
+    color: #A2A2A2;
+    font-size: 13px;
+
+}
+
+/* submit button  */
+input[type=submit] {
+
+    border: none;
+    background-color: var(--primary);
+    padding: .6rem 1rem;
+    color: var(--light);
+    border-radius: 4px;
+
+}
+
+input[type=submit]:hover {
+
+    opacity: .8;
+
+}
+
+/* media queries  */
+
+@media (max-width: 768px) {
+
+    /* splash inage  */
+    body>div>img {
+
+        width: 90vw;
+
+    }
+
+}
