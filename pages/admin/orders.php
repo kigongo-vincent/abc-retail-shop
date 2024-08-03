@@ -25,6 +25,14 @@ $orders = $orders_results["data"];
 
 ?>
 
+<!-- name = 14  -->
+<!-- trans id = 1 -->
+<!-- order date = 2 -->
+<!-- delivery date = 3 -->
+<!-- delivery status = 6 -->
+<!-- prod name = 8-->
+<!-- prod price = 9-->
+
 <body>
 
     <!-- navbar  -->
@@ -82,18 +90,22 @@ $orders = $orders_results["data"];
             </tr>
 
             <!-- single order details  -->
-            <tr>
-                <td>Kigongo vincent</td>
+            <?php foreach($orders as $order): ?>
+
+                <tr>
+                <td><?php echo $order[14] ?></td>
                 <td >
-                    product
+                <?php echo $order[8] ?> 
                 </td>
-                <td>$400,000</td>
-                <td><span>21 <sup>st</sup> june, 2020</span></td>
-                <td>22 <sup>nd</sup> jan 2019</td>
+                <td>$<?php echo $order[9] ?></td>
+                <td><span><?php echo $order[2] ?></td>
+                <td><?php echo $order[3] ?></td>
                 <td>
                     <div class="linear-gradient p-normal rounded">mark delivered</div>
                 </td>
             </tr>
+
+            <?php endforeach; ?>
             <!-- end single order details  -->
         </table>
     </div>
