@@ -35,55 +35,57 @@ const options = [
 
 ]
 
-const displayCategories =()=>{
+const displayCategories = () => {
 
     const categoriesContainer = document.getElementById("categories")
 
-    let output = ""
+    if (categoriesContainer) {
 
-    options.forEach(option => {
+        let output = ""
 
-        output += `<option value="${option.name}">${option.name}</option>`
+        options.forEach(option => {
 
-    })
+            output += `<option value="${option.name}">${option.name}</option>`
 
-    categoriesContainer.innerHTML = output
+        })
+
+        categoriesContainer.innerHTML = output
+
+    }
 
 }
 
 // products list 
-const products = [
+let products = []
 
-    {
-        id: 1,
-        name: "Jeans",
-        price: "4900",
-        category: "jackets",
-        image: "C:/Users/dev/Pictures/pexels-pixabay-65676.jpg"
-    },
-    {
-        id: 2,
-        name: "Trousers",
-        price: "450",
-        category: "jackets",
-        image: "C:/Users/dev/Pictures/pexels-mnzoutfits-1598507.jpg"
-    },
-    {
-        id: 3,
-        name: "T-shirt",
-        price: "40",
-        category: "t-shirts",
-        image: "C:/Users/dev/Pictures/pexels-dtanpt-1129"
-    },
-    {
-        id: 4,
-        name: "Suit and Tie (full package)",
-        price: "200",
-        category: "jackets",
-        image: "C:/Users/dev/Pictures/pexels-wlid-14501"
-    },
+const getProducts = async () => {
 
-]
+    const url = "http://localhost/abc%20retaill%20shop/controllers/getProducts.php"
+
+    const response = await fetch(url)
+
+    if (response.status == 200) {
+
+        const data = await response.json()
+
+        products = data.data.map(item => ({
+
+            id: parseInt(item[0]),
+            name: item[1],
+            price: parseInt(item[2]),
+            image: item[3],
+            status: item[4],
+            category: item[5]
+
+        }));
+
+        ContentRenderer("products", products, ProductCard, "products")
+
+    } else {
+        console.error("failed to connect to server")
+    }
+}
+
 // global variables 
 const globals = {
 
@@ -116,7 +118,6 @@ const SingleRenderer = (element, content) => {
 
 }
 //end pending orders display 
-
 
 
 // set filter for the products 
@@ -206,7 +207,7 @@ const ProductCard = (product) => {
 
             <div class="image">
 
-                <img src="${product.image}" alt="">
+                <img src="../../uploads/${product.image}" alt="">
 
             </div>
 
@@ -353,7 +354,9 @@ const displaySelectedProducts = () => {
 // load all js on screen visibility 
 
 window.addEventListener("DOMContentLoaded", () => {
-    
+
+    getProducts()
+
     displayCategories()
 
     SingleRenderer("selected_products_count", globals.selected_products.length)

@@ -70,15 +70,11 @@ const displayCategories =()=>{
     
     const categoriesContainer = document.getElementById("categories")
 
-    let output = ""
+    if(categoriesContainer){
 
-    state.options.forEach(option => {
+        
 
-        output += `<option value="${option.name}">${option.name}</option>`
-
-    })
-
-    categoriesContainer.innerHTML = output
+    }
 
 }
 
