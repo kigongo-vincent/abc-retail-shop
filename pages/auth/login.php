@@ -11,6 +11,30 @@
 
 </head>
 
+<?php
+
+$name = "";
+
+$email = "";
+
+$has_account = "";
+
+if(isset($_GET["name"])){
+
+    $email = $_GET["name"];
+
+}
+
+if(isset($_GET["email"]) && isset($_GET["has_account"])){
+
+    $email = $_GET["email"];
+
+    $has_account = $_GET["has_account"];
+
+}
+
+?>
+
 <body>
 
     <!-- main container  -->
@@ -20,21 +44,43 @@
         <img loading="lazy" src="../../assets/images/spash.png" alt="">
 
         <!-- welcome message  -->
-        <div class="flex align-center bg-warning text-light p-normal my rounded">
+        <?php if($has_account == "true"): ?>
+
+            <div class="flex align-center bg-warning text-light p-normal my rounded">
             <img height="20px" src="../../assets/icons/circle-info.svg" alt="">
-            <span class="mx w-100">Welcome back, kigongo, please provide your password to continue</span>
+            <span class="mx w-100">Welcome back <?php echo $name ?>, please provide your password to continue</span>
         </div>
 
+        <?php else: ?>
+
+            <div class="flex align-center bg-warning text-light p-normal my rounded">
+            <img height="20px" src="../../assets/icons/circle-info.svg" alt="">
+            <span class="mx w-100">You are most welcome, please provide the password you would wish to use when signing in. you are almost there!</span>
+        </div>
+
+        <?php endif; ?>    
+
         <!-- email input  -->
-        <form action="">
+        <form method="post" action="<?php if($has_account == "true"): ?> <?php echo "../../controllers/signin.php"; ?> <?php else: ?> <?php echo "../../controllers/signup.php"; ?>  <?php endif; ?>">
+
             <div>
                 <img height="15px" src="../../assets/icons/key.svg" alt="">
-                <input type="password" placeholder="your password" required>
+                <input type="email" hidden value="<?php echo $email ?>" name="email">
+                <input type="password" name="password" placeholder="your password" required>
             </div>
 
             <div>
                 <u>proceed as guest</u>
-                <input type="submit" value="Continue">
+                
+                <?php if($has_account == "true"): ?>
+
+                    <input name = "submit" type="submit" value="Signin">
+
+                <?php else: ?>    
+
+                    <input name = "submit" type="submit" value="Signup">
+
+                <?php endif ?>    
             </div>
         </form>
 

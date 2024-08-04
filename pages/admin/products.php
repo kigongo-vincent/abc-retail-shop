@@ -25,37 +25,7 @@ $number_of_products = $response["count"];
 
 <body>
 
-    <nav class="bg-light">
-
-        <!-- navigation brand  -->
-        <a href="">ABC Retail shop</a>
-
-        <!-- navigation menu  -->
-        <ul class="text-dark">
-            <!-- view selected products  -->
-            <li class="text-light flex align-center">
-                <img src="../../assets/icons/folder-cart.svg" alt="" class="mr">
-                <small>Orders from clients</small>
-            </li>
-
-            <!-- view user profile and order history  -->
-            <li role="button" class="popover-parent">
-                <img onclick="toggleProfileVisibility()" src="../../assets/icons/user.svg" alt="">
-                <div class="popover-child">
-                    <span class="flex justify-end align-center">
-                        <img onclick="toggleProfileVisibility()" src="../../assets//icons/x.svg" width="10px"
-                            height="10px">
-                    </span>
-                    <p> Hi, <b>Vincent</b></p>
-                </div>
-            </li>
-
-            <!-- logout link  -->
-            <li>
-                <img src="../../assets/icons/log-out.svg" alt="">
-            </li>
-        </ul>
-    </nav>
+<?php include("../../components/navigation.php"); ?>
 
     <!-- main  -->
 

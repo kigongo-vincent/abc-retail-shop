@@ -1,8 +1,8 @@
 <?php
 
 include("../utilities/UPLOAD_PNG.php");
-include("../utilities/POST.php");
 
+include("../utilities/POST.php");
 
 
 if(isset($_POST["submit"])){
@@ -20,9 +20,13 @@ if(isset($_POST["submit"])){
     $data = [
 
         "name" => $_POST['name'],
+
         "price" => $_POST['price'],
+
         "category"=> NULL,
+
         "image" => $image,
+        
         "status" => "available"
     
         ];

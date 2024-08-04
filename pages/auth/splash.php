@@ -24,13 +24,13 @@
          <p>Welcome to ABC retail shop</p>
 
          <!-- email input  -->
-        <form action="">
+        <form action="../../controllers/verifyEmail.php" method="post">
 
             <div>
 
                 <img  src="../../assets/icons/email.svg" alt="">
 
-                <input type="email" placeholder="your email" required>
+                <input type="email" name="email" placeholder="your email" required>
 
             </div>
 
@@ -38,7 +38,7 @@
 
                 <u>proceed as guest</u>
 
-                <input type="submit" value="Continue">
+                <input type="submit" name="submit" value="Continue">
 
             </div>
 

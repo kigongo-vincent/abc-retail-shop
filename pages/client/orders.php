@@ -8,43 +8,30 @@
     <title>Order History</title>
 </head>
 
+<?php
+
+include("../../utilities/GET_SPECIFIC_ORDERS.php");
+
+include("../../components/connect.php");
+
+$response = GET_SPECIFIC_ORDERS($db_connection, 1);
+
+$orders = [];
+
+if($response["status"] == 200){
+
+$orders = $response["data"];
+
+}
+
+
+?>
+
+
 <body>
 
     <!-- navbar  -->
-    <nav class="shadow">
-
-        <!-- navigation brand  -->
-        <a href="">ABC Retail shop</a>
-
-        <!-- navigation menu  -->
-        <ul class="text-dark">
-            <!-- view selected products  -->
-            <li id="selected_products_count">
-                <img onclick="toggleProductsModalVisibility()" src="../../assets/icons/cart.svg" alt="">
-            </li>
-
-            <!-- view user profile and order history  -->
-            <li role="button" class="popover-parent">
-                <img onclick="toggleProfileVisibility()" src="../../assets/icons/user.svg" alt="">
-                <div class="popover-child">
-                    <span class="flex justify-end align-center">
-                        <img onclick="toggleProfileVisibility()" src="../../assets//icons/x.svg" width="15px"
-                            height="15px">
-                    </span>
-                    <p> Hi, <b>Vincent</b></p>
-                    <div class="bg-light fade flex align-center p my rounded">
-                        <img class="mr" height="15px" src="../../assets/icons/clock.svg" alt="">
-                        <p>Your order history</p>
-                    </div>
-                </div>
-            </li>
-
-            <!-- logout link  -->
-            <li>
-                <img src="../../assets/icons/log-out.svg" alt="">
-            </li>
-        </ul>
-    </nav>
+    <?php include("../../components/navbar.php") ?>
     <!-- end navbar  -->
 
     <!-- header  -->
@@ -59,36 +46,58 @@
         <table class="bg-bright mt-2 p-2 w-100 shadow">
 
             <tr>
-                <td class="p-2">Products</td>
-                <td>Total price</td>
+                <td>Product</td>
+                <td >Transaction ID</td>
+                <td>price</td>
                 <td>Date of Order</td>
                 <td>Date of Delivery</td>
                 <td>Delivery status</td>
             </tr>
 
             <!-- single order details  -->
-            <tr>
-                <td class="mr-1 pr-1">
-                    <ul class="bg-light p-2">
-                        <li>Chevrolet</li>
-                        <li>Pair of jeans</li>
-                        <li>Navy blue shirt</li>
-                        <li>Headsets</li>
-                    </ul>
+            <?php foreach($orders as $order): ?>
+
+                <tr>
+                <td >
+                   
+                        <?php echo $order[8]; ?>
+                        
                 </td>
-                <td>$400,000</td>
-                <td><span>21 <sup>st</sup> june, 2020</span></td>
-                <td>22 <sup>nd</sup> jan 2019</td>
+                <td >
+                   
+                        <?php echo $order[1]; ?>
+                        
+                </td>
+                <td>$<?php echo $order[9]; ?></td>
+                <td><?php echo $order[2]; ?></td>
+                <td><?php echo $order[3]; ?></td>
                 <td>
-                    <div class="flex align-center btn-success">
+                    <?php if($order[6] =="pending"): ?>
+
+                        <div class="flex align-center btn-warning">
+                        <img height="20px" src="../../assets/icons/spinner.svg" alt="">
+                        <span class="mx">Not yet delivered</span>
+                    </div>
+
+                    <?php else: ?>
+
+                        <div class="flex align-center btn-success">
                         <img height="20px" src="../../assets/icons/circle-check.svg" alt="">
                         <span class="mx">delivered</span>
                     </div>
+
+                    <?php endif; ?>
                 </td>
             </tr>
+
+            <?php endforeach; ?>
             <!-- end single order details  -->
         </table>
     </div>
+
+    <!-- order modal  -->
+    <?php include("../../components/modal.php"); ?>
+    <!-- end order modal  -->
 
     <!-- script  -->
     <script src="../../assets/js/index.js"></script>

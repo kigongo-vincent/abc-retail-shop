@@ -1,7 +1,5 @@
 class State {
 
-    products = []
-
     options = [
 
         {
@@ -59,23 +57,6 @@ class State {
 
     }
 
-    setProducts = (products) => {
-
-        this.products = products
-    }
-
-}
-
-const displayCategories =()=>{
-    
-    const categoriesContainer = document.getElementById("categories")
-
-    if(categoriesContainer){
-
-        
-
-    }
-
 }
 
 const displaySelectedImage = () => {
@@ -94,94 +75,9 @@ const displaySelectedImage = () => {
 
 const state = new State()
 
-const ContentRenderer = (container, data, card) => {
-
-    const DisplayContainer = document.querySelector(`.${container}`)
-
-    let output = ""
-
-    data?.length == 0
-
-        ?
-
-        output = "<p style='font-weight: 900; margin-top: 10px'>No items found</p>"
-
-        :
-
-        data.map(item => {
-
-            output += card(item)
-
-        })
-
-    DisplayContainer.innerHTML = output
-
-}
-
 const toggleAddProductModal = () => {
 
     state.toggleProductAdditionModalVisibility()
-
-}
-
-const getProducts = () => {
-
-    return [
-
-        {
-            id: 1,
-            name: "Jeans",
-            price: "4900",
-            category: "jackets",
-            sold: false,
-            image: "C:/Users/dev/Pictures/pexels-pixabay-65676.jpg"
-        },
-        {
-            id: 2,
-            name: "Trousers",
-            price: "450",
-            category: "jackets",
-            sold: true,
-            image: "C:/Users/dev/Pictures/pexels-mnzoutfits-1598507.jpg"
-        }
-
-    ]
-
-}
-
-const ProductCard = (product) => {
-
-    return (
-
-        `
-        <div class="card bg-light w-400">
-
-            <div class="image">
-
-                <img src="${product.image}" alt="">
-
-            </div>
-
-            <div>
-
-                <p>${product.name}</p>
-
-                <footer class="flex align-center justify-between">
-
-                    <p>$${product.price}</p>
-
-                     ${product.sold ? '<div class="bg-dark contain rounded">sold</div>' : ''}
-
-                </footer>
-
-               
-
-            </div>
-
-        </div>
-        `
-
-    )
 
 }
 
@@ -204,18 +100,3 @@ const toggleAddProductVisibility = () => {
     }
 
 }
-
-
-
-//end show or hide add product modal
-
-window.addEventListener("load", () => {
-
-    displayCategories()
-
-    state.setProducts(getProducts())
-
-    // ContentRenderer("render-products", state.products, ProductCard)
-
-
-})

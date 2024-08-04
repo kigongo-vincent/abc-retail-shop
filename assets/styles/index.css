@@ -55,7 +55,7 @@ p {
 body {
 
     background-color: var(--light);
-    font-family: "Inter";
+    font-family: "Inter", "sans-serif";
 
 }
 
@@ -474,19 +474,24 @@ main>div:nth-of-type(1) div:hover {
 
 }
 
-.flex-wrap{
+.p-5 {
+
+    padding: 2.5rem 5rem;
+}
+
+.flex-wrap {
 
     flex-wrap: wrap;
 
 }
 
-.w-400{
+.w-400 {
 
     width: 400px;
 
 }
 
-.w-47{
+.w-47 {
 
     width: 47%;
 
@@ -563,13 +568,13 @@ main>div:nth-of-type(1) div:hover {
 
 }
 
-.rounded-edges{
+.rounded-edges {
 
     border-radius: 100px;
 
 }
 
-.contain{
+.contain {
 
     width: max-content;
     padding: 10px 30px;
@@ -608,20 +613,20 @@ body>section {
 
 }
 
-.bg-warning{
+.bg-warning {
 
     background-color: rgba(188, 232, 255, 0.78);
     color: rgb(17, 154, 228);
 
 }
 
-.p-normal{
+.p-normal {
 
     padding: 1rem 2rem;
 
 }
 
-.rounded{
+.rounded {
 
     border-radius: 4px;
 

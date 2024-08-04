@@ -68,7 +68,9 @@ const getProducts = async () => {
 
         const data = await response.json()
 
-        products = data.data.map(item => ({
+       if(data?.status == 200){
+
+        products = data?.data?.map(item => ({
 
             id: parseInt(item[0]),
             name: item[1],
@@ -80,6 +82,8 @@ const getProducts = async () => {
         }));
 
         ContentRenderer("products", products, ProductCard, "products")
+
+       }
 
     } else {
         console.error("failed to connect to server")
@@ -106,13 +110,17 @@ const SingleRenderer = (element, content) => {
 
     const node = document.getElementById(`${element}`)
 
-    if (globals.selected_products.length != 0) {
+    if (node) {
 
-        node.innerHTML += `<span>${content}</span>`
+        if (globals.selected_products.length != 0) {
 
-    } else {
+            node.innerHTML += `<span>${content}</span>`
 
-        node.innerHTML = `<img onclick="toggleProductsModalVisibility()" src="../../assets/icons/cart.svg" alt="">`
+        } else {
+
+            node.innerHTML = `<img onclick="toggleProductsModalVisibility()" src="../../assets/icons/cart.svg" alt="">`
+
+        }
 
     }
 
@@ -264,7 +272,11 @@ const ContentRenderer = (container, data, card, type) => {
 
         })
 
-    DisplayContainer.innerHTML = output
+    if(DisplayContainer){
+
+        DisplayContainer.innerHTML = output
+
+    }
 
 }
 
@@ -295,11 +307,11 @@ const toggleProfileVisibility = () => {
 //end show or hide profile
 
 
-const placeOrder =()=>{
+const placeOrder = () => {
 
     const baseURL = "http://localhost/abc%20retaill%20shop/controllers/addOrder.php"
 
-    const params  ={
+    const params = {
 
         products: globals.selected_products,
 
@@ -368,20 +380,31 @@ const displaySelectedProducts = () => {
 // end display selected products 
 
 
+const Logout = () => {
+
+    const sure = confirm("Are you sure you want to logout?");
+
+    if (sure) {
+
+        window.location.href = "../../components/logout.php"
+
+    }
+
+}
+
 
 // load all js on screen visibility 
 
 window.addEventListener("DOMContentLoaded", () => {
+        displayCategories()
+        getProducts()
 
-    displayCategories()
-    getProducts()
 
+        SingleRenderer("selected_products_count", globals.selected_products.length)
 
-    SingleRenderer("selected_products_count", globals.selected_products.length)
+        ContentRenderer("options", options, OptionCard)
 
-    ContentRenderer("options", options, OptionCard)
-
-    ContentRenderer("products", products, ProductCard, "products")
+        ContentRenderer("products", products, ProductCard, "products")
 
 
 })
