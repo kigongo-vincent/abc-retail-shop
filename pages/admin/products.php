@@ -11,15 +11,17 @@
 
 <?php
 
-include("../../components/connect.php");
+    session_start();
 
-include("../../utilities/GET.php");
+    include("../../components/connect.php");
 
-$response = GET($db_connection, "products", TRUE);
+    include("../../utilities/GET.php");
 
-$products = $response["data"];
+    $response = GET($db_connection, "products", TRUE);
 
-$number_of_products = $response["count"];
+    $products = $response["data"];
+
+    $number_of_products = $response["count"];
 
 ?>
 
@@ -28,7 +30,6 @@ $number_of_products = $response["count"];
 <?php include("../../components/navigation.php"); ?>
 
     <!-- main  -->
-
 
     <div class="mt-2 container">
         <u><h4>Products</h4></u>

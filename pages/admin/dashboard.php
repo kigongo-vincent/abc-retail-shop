@@ -10,9 +10,10 @@
 
 <?php
 
+session_start();
+
     include("../../components/connect.php");
     include("../../utilities/FILTER.php");
-
 
     $products_available = 0;
 
@@ -54,7 +55,7 @@
 
         <div class="bg-light p-2">
 
-            <div class="h2">Hello, System Admin</div>
+            <div class="h2">Hello, <?php echo $_SESSION["name"]; ?></div>
 
             <p class="mt-2">What would you wish to do today?</p>
 

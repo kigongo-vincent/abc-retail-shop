@@ -1,5 +1,15 @@
 <nav class="bg-light">
 
+        <?php 
+        
+        if(!isset($_SESSION["name"]) || $_SESSION["role"] != "admin"){
+
+            header("Location: ../auth/splash.php");
+
+        }
+
+        ?>
+
         <!-- navigation brand  -->
         <a href="dashboard.php" style="color:#333; font-weight: 600">ABC Retail shop</a>
 

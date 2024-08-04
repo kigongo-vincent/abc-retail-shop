@@ -26,7 +26,7 @@ if(isset($_POST["submit"])){
 
     if($response["status"] == 201){
 
-        $response = GET_ONE($db_connection, "users", "email", $email);
+        $response = GET_ONE($db_connection, "users", "email", $_POST['email']);
 
         $_SESSION["name"] = $response["data"]["name"];
 

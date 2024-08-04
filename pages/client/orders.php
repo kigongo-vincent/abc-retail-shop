@@ -8,13 +8,22 @@
     <title>Order History</title>
 </head>
 
-<?php
+
+
+
+<body>
+
+    <!-- navbar  -->
+    <?php include("../../components/navbar.php") ?>
+    <!-- end navbar  -->
+
+    <?php
 
 include("../../utilities/GET_SPECIFIC_ORDERS.php");
 
 include("../../components/connect.php");
 
-$response = GET_SPECIFIC_ORDERS($db_connection, 1);
+$response = GET_SPECIFIC_ORDERS($db_connection, $_SESSION["user_id"]);
 
 $orders = [];
 
@@ -26,13 +35,6 @@ $orders = $response["data"];
 
 
 ?>
-
-
-<body>
-
-    <!-- navbar  -->
-    <?php include("../../components/navbar.php") ?>
-    <!-- end navbar  -->
 
     <!-- header  -->
     <div class="mt-2 container">

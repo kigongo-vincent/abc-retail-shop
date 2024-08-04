@@ -15,11 +15,12 @@
 
 <?php
 
+    session_start();
+
     include("../../components/connect.php");
     
     include("../../utilities/GET_ORDERS.php");
     
-
     $orders_results = GET_ORDERS($db_connection);
 
     $orders = [];

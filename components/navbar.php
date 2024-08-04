@@ -1,10 +1,14 @@
+<?php session_start(); ?>
+
 <nav class="shadow">
 
         <!-- navigation brand  -->
         <a href="dashboard.php">ABC Retail shop</a>
 
         <!-- navigation menu  -->
-        <ul class="text-dark">
+        <?php if(isset($_SESSION["name"]) && $_SESSION["role"] =="client"):?>
+
+            <ul class="text-dark">
             <!-- view selected products  -->
             <li id="selected_products_count">
                 <img onclick="toggleProductsModalVisibility()" src="../../assets/icons/cart.svg" alt="">
@@ -18,7 +22,7 @@
                         <img onclick="toggleProfileVisibility()" src="../../assets//icons/x.svg" width="15px"
                             height="15px">
                     </span>
-                    <p> Hi, <b>Vincent</b></p>
+                    <p> Hi, <b><?php echo $_SESSION["name"] ?></b></p>
                     <a href="./orders.php" style="color: black">
                     <div class="bg-light fade flex align-center p my rounded">
                         <img class="mr" height="15px" src="../../assets/icons/clock.svg" alt="">
@@ -33,4 +37,10 @@
                 <img src="../../assets/icons/log-out.svg" alt="">
             </li>
         </ul>
+
+        <?php else: ?>   
+            
+           <?php header("Location: ../auth/splash.php"); ?>
+
+        <?php endif ?>     
     </nav>

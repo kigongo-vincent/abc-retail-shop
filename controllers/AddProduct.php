@@ -23,7 +23,7 @@ if(isset($_POST["submit"])){
 
         "price" => $_POST['price'],
 
-        "category"=> NULL,
+        "category"=> $_POST["category"],
 
         "image" => $image,
         

@@ -1,9 +1,23 @@
 <?php
 
-include("./utilities/GET.php");
+session_start();
 
-include("./components/connect.php");
+if(isset($_SESSION["name"])){
 
-$result = GET($db_connection, "products", FALSE);
+if($_SESSION["role"] == "admin"){
 
-print_r($result["data"]);
+    header("Location: ./pages/admin/dashboard.php");
+
+}else{
+
+    header("Location: ./pages/client/dashboard.php");
+
+}
+
+}else{
+
+    header("Location: ./pages/auth/splash.php");
+
+}
+
+?>

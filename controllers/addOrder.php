@@ -1,5 +1,13 @@
 <?php
 
+session_start();
+
+if(!isset($_SESSION["user_id"])){
+
+    header("Location: ../pages/auth/splash.php");
+
+}
+
 include("../utilities/POST.php");
 include("../utilities/PATCH.php");
 
@@ -29,7 +37,7 @@ foreach ($products as $product) {
 
         "product" => $product,
 
-        "user"=> 1,
+        "user"=> $_SESSION["user_id"],
 
         "delivery_status" => "pending"
 
